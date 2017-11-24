@@ -10,6 +10,7 @@ Game::Game() : noPosMoves(0), shouldRun(true) {
   this->blackPlayer = new HumanPlayer(BLACK);
   this->logic = new DefaultLogic(this->board);
   this->printer = new ConsoleMsgs();
+  this->menu = new MainMenu();
 
   this->numOfEmptyCells = (this->board->getSize() * this->board->getSize()) - 4;
   this->currentPlayer = this->blackPlayer;
@@ -17,6 +18,8 @@ Game::Game() : noPosMoves(0), shouldRun(true) {
 }
 
 void Game::run() {
+  this->menu->run();
+
   while (this->shouldRun) {
     playOneTurn();
     this->updateCurrentPlayer();
@@ -105,4 +108,5 @@ Game::~Game() {
   delete this->blackPlayer;
   delete this->whitePlayer;
   delete this->logic;
+  delete this->menu;
 }
