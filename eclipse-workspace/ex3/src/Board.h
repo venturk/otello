@@ -1,5 +1,5 @@
 /*
-* Kfir Ventura the great loser
+* Kfir Ventura the great loser.
 * 301754370
 */
 #ifndef EX2_BOARD_H
