@@ -1,5 +1,5 @@
 /*
-* Kfir Ventura the loser
+* Kfir Ventura the loser.
 * 301754370
 */
 #include "Board.h"
