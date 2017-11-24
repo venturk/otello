@@ -9,6 +9,7 @@
 #include "HumanPlayer.h"
 #include "DefaultLogic.h"
 #include "ConsoleMsgs.h"
+#include "MainMenu.h"
 #include <iostream>
 
 using namespace std;
@@ -23,6 +24,7 @@ class Game {
   Player *whitePlayer, *blackPlayer, *currentPlayer;
   GameLogic *logic;
   ConsoleMsgs *printer;
+  MainMenu *menu;
 
   char currentColor;
 
