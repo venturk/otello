@@ -36,6 +36,7 @@ class DefaultLogic : public GameLogic {
    */
   virtual void executeOrder66(int row, int col);
 
+
  private:
   /**
    * Members.

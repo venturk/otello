@@ -46,7 +46,7 @@ class Board {
  * The method prints the board.
  */
   void printBoard() const;
-  
+
  private:
   /**
    * Members of the class.

@@ -6,7 +6,7 @@
  */
 #include "Player.h"
 #include "GameLogic.h"
-#include "MiniMaxLogic.h"
+#include "MiniMaxAlgo.h"
 
 #ifndef AIPLAYER_H_
 #define AIPLAYER_H_
