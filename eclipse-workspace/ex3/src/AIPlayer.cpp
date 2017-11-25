@@ -19,5 +19,11 @@ char AIPlayer::getColor() const {
 
 void AIPlayer::makeMove(GameLogic *logic, CellMap *posMoves,
                         ConsoleMsgs *printer) {
-    MiniMaxLogic::useMiniMaxMove(logic, posMoves);
+    char oppColor;
+    if (this->color == BLACK) {
+        oppColor = WHITE;
+    } else {
+        oppColor = BLACK;
+    }
+    MiniMaxAlgo::useMiniMaxMove(logic, posMoves, this->color,oppColor, );
 }

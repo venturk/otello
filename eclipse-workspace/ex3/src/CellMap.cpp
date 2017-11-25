@@ -34,7 +34,7 @@ void CellMap::flipCellColor(int row, int col) {
 }
 
 char CellMap::getCellColor(int row, int col) const {
-  this->at(row, col)->getColor();
+  return this->at(row, col)->getColor();
 }
 
 map<string, Cell *>::iterator CellMap::begin() const {
