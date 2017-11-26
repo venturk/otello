@@ -16,13 +16,14 @@
  */
 class AIPlayer : public Player {
  public:
-    AIPlayer(char color);
+    AIPlayer(char color, Board * b);
     virtual ~AIPlayer() {};
     char getColor() const;
     void makeMove(GameLogic *logic, CellMap *posMoves, ConsoleMsgs *printer);
 
  private:
     const char color;
+    Board * board;
 };
 
 #endif /* AIPLAYER_H_ */
