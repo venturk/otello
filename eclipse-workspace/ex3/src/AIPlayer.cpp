@@ -7,15 +7,15 @@
 
 #include "AIPlayer.h"
 
-AIPlayer::AIPlayer(char color)
-        : color(color) {
-
+AIPlayer::AIPlayer(char color, Board *b)
+        : color(color), board(b) {
 }
 
 
 char AIPlayer::getColor() const {
     return this->color;
 }
+
 
 void AIPlayer::makeMove(GameLogic *logic, CellMap *posMoves,
                         ConsoleMsgs *printer) {
@@ -25,5 +25,5 @@ void AIPlayer::makeMove(GameLogic *logic, CellMap *posMoves,
     } else {
         oppColor = BLACK;
     }
-    MiniMaxAlgo::useMiniMaxMove(logic, posMoves, this->color,oppColor, );
+    MiniMaxAlgo::useMiniMaxMove(logic, posMoves, this->color,oppColor,this->board);
 }
