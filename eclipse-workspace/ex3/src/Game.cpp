@@ -7,7 +7,7 @@
 Game::Game() : noPosMoves(0), shouldRun(true) {
   this->board = new Board();
   this->whitePlayer = new HumanPlayer(WHITE);
-  this->blackPlayer = new HumanPlayer(BLACK);
+  this->blackPlayer = NULL;
   this->logic = new DefaultLogic(this->board);
   this->printer = new ConsoleMsgs();
   this->menu = new MainMenu();
@@ -18,7 +18,10 @@ Game::Game() : noPosMoves(0), shouldRun(true) {
 }
 
 void Game::run() {
-  this->menu->run();
+  if(this->menu->run() == humanPlayer)
+	  this->blackPlayer = new HumanPlayer(BLACK);
+  else
+	  this->blackPlayer() = new AIPlayer(BLACK, this->board);
 
   while (this->shouldRun) {
     playOneTurn();
