@@ -19,7 +19,7 @@
 
 using namespace std;
 
-class Board {
+class Board{
  public:
   /**
    * @return a pointer to the map of cells.
@@ -36,6 +36,8 @@ class Board {
  * @param size the board's size.
  */
   Board(int size = BOARD_SIZE);
+  //copy c'tor
+  Board (const Board &obj);
 
   /**
    * Destructor.
@@ -51,7 +53,7 @@ class Board {
   /**
    * Members of the class.
    */
-  const int size;
+  int size;
   CellMap *board;
 
   /**

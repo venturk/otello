@@ -6,6 +6,13 @@
 
 CellMap::CellMap() : cellMap(new map<string, Cell *>) {}
 
+CellMap::CellMap(const CellMap* &obj) {
+    this->cellMap = new map<string,Cell *>;
+    for (Iterator it = obj->cellMap->begin(); it!= obj->cellMap->end(); it++) {
+        this->insert(it->second);
+    }
+}
+
 void CellMap::insert(int row, int col, char color) {
   Cell *cell = new Cell(row, col, color);
   cellMap->insert(pair<string, Cell *>(cell->toString(), cell));
