@@ -1,7 +1,7 @@
 /*
-* Kfir Ventura
-* 301754370
-*/
+ * Kfir Ventura
+ * 301754370
+ */
 #ifndef EX2_CELLMAP_H
 #define EX2_CELLMAP_H
 
@@ -13,44 +13,46 @@ typedef map<string, Cell *>::iterator Iterator;
 
 class CellMap {
  public:
-  // C'tor
-  CellMap();
+    // C'tor
+    CellMap();
 
-  // Identical to the "at" method of a regular map
-  Cell *at(int row, int col) const;
+    CellMap(const CellMap* &obj);
 
-  // Identical to the "insert" method of a regular map
-  void insert(int row, int col, char color = EMPTY);
+    // Identical to the "at" method of a regular map
+    Cell *at(int row, int col) const;
 
-  // The method sets a cell's color in a given row & col
-  void setCellColor(int row, int col, char color);
+    // Identical to the "insert" method of a regular map
+    void insert(int row, int col, char color = EMPTY);
 
-  // The method is a getter for cell's color in a given row & col
-  char getCellColor(int row, int col) const;
+    // The method sets a cell's color in a given row & col
+    void setCellColor(int row, int col, char color);
 
-  // The method returns true if a cell with a given row & col indexes is in map
-  bool isInMap(int row, int col) const;
+    // The method is a getter for cell's color in a given row & col
+    char getCellColor(int row, int col) const;
 
-  // D'tor
-  ~CellMap();
+    // The method returns true if a cell with a given row & col indexes is in map
+    bool isInMap(int row, int col) const;
 
-  // Identical to the "insert" method of a regular map
-  void insert(Cell* cell);
+    // D'tor
+    ~CellMap();
 
-  // The method enables to change a cell's color in a given row & col
-  void flipCellColor(int row, int col);
+    // Identical to the "insert" method of a regular map
+    void insert(Cell* cell);
 
-  // return the size of the map
-  int getSize() const;
+    // The method enables to change a cell's color in a given row & col
+    void flipCellColor(int row, int col);
 
-  // return a pointer to the beginning of the map
-  map<string, Cell *>::iterator begin() const;
+    // return the size of the map
+    int getSize() const;
 
-  // return a pointer to the end of the map
-  map<string, Cell *>::iterator end() const;
+    // return a pointer to the beginning of the map
+    map<string, Cell *>::iterator begin() const;
+
+    // return a pointer to the end of the map
+    map<string, Cell *>::iterator end() const;
  private:
-  // members
-  map<string, Cell *> *cellMap;
+    // members
+    map<string, Cell *> *cellMap;
 };
 
 #endif //EX2_CELLMAP_H

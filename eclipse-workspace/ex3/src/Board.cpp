@@ -9,11 +9,16 @@ Board::Board(int size)
           board(new CellMap()) {
     initBoard();
 }
+Board::Board(const Board &obj) {
+    this->size = obj.getSize();
+    CellMap *cm = obj.getCellsList();
+    this->board= new CellMap(*cm);
+}
 
 CellMap *Board::getCellsList() const {
     return this->board;
 }
-;
+
 
 void Board::initBoard() {
     for (int row = 1; row <= this->size; row++) {
