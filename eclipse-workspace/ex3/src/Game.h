@@ -7,6 +7,7 @@
 
 #include "Board.h"
 #include "HumanPlayer.h"
+#include "AIPlayer.h"
 #include "DefaultLogic.h"
 #include "ConsoleMsgs.h"
 #include "MainMenu.h"
