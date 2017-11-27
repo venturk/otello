@@ -1,10 +1,5 @@
 /*
- * Kfir Ventura the loser.
- =======
- /*ss
- * Kfir Ven
-
-
+ * Kfir Ventura
  * 301754370
  */
 #include "Board.h"
