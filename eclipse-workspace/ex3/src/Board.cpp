@@ -14,6 +14,9 @@ Board::Board(const Board &obj) {
     CellMap *cm = obj.getCellsList();
     this->board= new CellMap(*cm);
 }
+Board::~Board() {
+    delete this->board;
+}
 
 CellMap *Board::getCellsList() const {
     return this->board;
@@ -67,8 +70,4 @@ void Board::printLineSeparator() const {
 
 int Board::getSize() const {
     return this->size;
-}
-
-Board::~Board() {
-    delete this->board;
 }

@@ -1,28 +1,41 @@
 /*
-* Kfir Ventura
-* 301754370
-*/
+ * Kfir Ventura
+ * 301754370
+ */
 #include "HumanPlayer.h"
 
-HumanPlayer::HumanPlayer(char color) : color(color) {}
+HumanPlayer::HumanPlayer(char color)
+        : color(color) {
+}
 
 char HumanPlayer::getColor() const {
-  return this->color;
+    return this->color;
 }
 
 void HumanPlayer::makeMove(GameLogic *logic, CellMap *posMoves,
                            ConsoleMsgs *printer) {
-  int row, col;
+    int row, col;
 
-  do {
-    cin >> row >> col;
+    do {
+        cout << "please enter row: " << endl;
+        cin >> row;
+        int x = isdigit(row);
+        if (x==0) {
+            cin.clear();
+            cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+            cout << "please enter column: " << endl;
+            cin >> col;
+            if (isdigit(col)==0) {
+                cin.clear();
+                cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+                if (posMoves->isInMap(row, col))
+                    break;
+            }
+        }
 
-    if (posMoves->isInMap(row, col))
-      break;
+        printer->illegalMove();
+        //printer->plsEnterMove();
+    } while (true);
 
-    printer->illegalMove();
-    printer->plsEnterMove();
-  } while (true);
-
-  logic->executeOrder66(row, col);
+    logic->executeOrder66(row, col);
 }

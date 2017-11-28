@@ -7,6 +7,9 @@
 
 #include <map>
 #include "Cell.h"
+#include <string>
+
+using namespace std;
 
 // for convenience reasons
 typedef map<string, Cell *>::iterator Iterator;
@@ -16,7 +19,7 @@ class CellMap {
     // C'tor
     CellMap();
 
-    CellMap(const CellMap* &obj);
+    CellMap(const CellMap &obj);
 
     // Identical to the "at" method of a regular map
     Cell *at(int row, int col) const;
@@ -32,6 +35,11 @@ class CellMap {
 
     // The method returns true if a cell with a given row & col indexes is in map
     bool isInMap(int row, int col) const;
+
+    // The method returns true if a cell with a given row & col indexes (as string) is in map
+    bool isInMap(string rowCommaCol) const;
+
+    bool count(string str) const;
 
     // D'tor
     ~CellMap();

@@ -4,15 +4,45 @@
  */
 #include "DefaultLogic.h"
 
-DefaultLogic::DefaultLogic(Board *board, char currentColor){
+DefaultLogic::DefaultLogic(Board *board, char currentColor) {
     this->board = board;
     this->currentColor = currentColor;
     this->cellMap = board->getCellsList();
     this->possibleMoves = new CellMap();
     this->currentCell = NULL;
 }
-//    currentCell();
-//    delete currentCell;
+DefaultLogic::DefaultLogic(DefaultLogic &obj) {
+    Board * b = obj.getLogicBoard();
+    Cell * c = obj.currentCell;
+    CellMap *cm  = obj.getCellMap();
+    CellMap *pm = obj.clonePossibleMoves();
+    this->board = new Board(*b);
+    this->currentColor = obj.getCurrentColor();
+    this->cellMap = new CellMap(*cm);
+    this->possibleMoves= new CellMap(*pm);
+    this->currentCell = c;
+}
+
+DefaultLogic::~DefaultLogic() {
+//    delete this->cellMap;
+    delete this->possibleMoves;
+}
+
+Board * DefaultLogic::getLogicBoard() const {
+    return this->board;
+}
+char DefaultLogic::getCurrentColor() const {
+    return this->currentColor;
+}
+Cell * DefaultLogic::getCurrentCell() const {
+    return this->getCurrentCell();
+}
+CellMap * DefaultLogic::clonePossibleMoves() const {
+    return this->possibleMoves;
+}
+CellMap * DefaultLogic::getCellMap() const {
+    return this->cellMap;
+}
 
 CellMap *DefaultLogic::getPossibleMoves(char currentColor) {
     delete possibleMoves;
@@ -91,6 +121,3 @@ bool DefaultLogic::cellOutOfBounds(int row, int col) const {
             || (col > this->board->getSize()));
 }
 
-DefaultLogic::~DefaultLogic() {
-    delete this->possibleMoves;
-}
