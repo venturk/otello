@@ -31,6 +31,7 @@ class GameLogic {
    * @param col - col's index to start from.
    */
   virtual void executeOrder66(int row, int col) = 0;
+
  private:
   /**
    * Sub method that checks if the cell is out of boundaries.
