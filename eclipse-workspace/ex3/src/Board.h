@@ -10,7 +10,7 @@
 #define LINE_SEPARATOR_SIZE ((this->size * 4) + 3)
 #define MID_CELL_1 (this->size / 2)
 #define MID_CELL_2 ((this->size / 2) + 1)
-#define BOARD_SIZE 4
+#define BOARD_SIZE 8
 
 #include <iostream>
 #include "Cell.h"
