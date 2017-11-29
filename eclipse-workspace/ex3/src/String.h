@@ -1,7 +1,7 @@
 /*
-* Kfir Ventura
-* 301754370
-*/
+ * Kfir Ventura
+ * Avihay Arzuan
+ */
 
 #ifndef EX2_STRING_H
 #define EX2_STRING_H
@@ -20,8 +20,6 @@ class String {
    * @return "(x,y)"
    */
   static string intToPoint(int x, int y);
-  static string stringToRow(string str);
-  static string stringToCol(string str);
 };
 
 #endif //EX2_STRING_H

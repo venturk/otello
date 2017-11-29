@@ -1,7 +1,7 @@
 /*
-* Kfir Ventura
-* 301754370
-*/
+ * Kfir Ventura
+ * Avihay Arzuan
+ */
 #ifndef EX2_POINT_H
 #define EX2_POINT_H
 

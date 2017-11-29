@@ -1,8 +1,7 @@
 /*
-* Kfir Ventura
-* 301754370
-* sfgdsfghdf
-*/
+ * Kfir Ventura
+ * Avihay Arzuan
+ */
 #include "Game.h"
 
 Game::Game() : noPosMoves(0), shouldRun(true) {
@@ -11,16 +10,22 @@ Game::Game() : noPosMoves(0), shouldRun(true) {
   this->blackPlayer = new HumanPlayer(BLACK);
   this->logic = new DefaultLogic(this->board);
   this->printer = new ConsoleMsgs();
-  this->menu = new MainMenu();
-
+  MainMenu menu;
+  this->menu = menu;
   this->numOfEmptyCells = (this->board->getSize() * this->board->getSize()) - 4;
   this->currentPlayer = this->blackPlayer;
   this->currentColor = this->currentPlayer->getColor();
 }
 
+Game::~Game() {
+//  delete this->board;
+  delete this->logic;
+  delete this->printer;
+  delete this->blackPlayer;
+  delete this->whitePlayer;
+}
 void Game::run() {
-
-  if(this->menu->run() == humanPlayer)
+  if(this->menu.run() == humanPlayer)
 	  this->whitePlayer = new HumanPlayer(WHITE);
   else
 	  this->whitePlayer = new AIPlayer(WHITE, this->board);
@@ -45,7 +50,7 @@ void Game::printWinner() const {
 }
 
 void Game::playOneTurn() {
-  CellMap *posMoves = logic->getPossibleMoves(this->currentColor);
+  map<string, Cell> posMoves = logic->getPossibleMoves(this->currentColor);
 
   this->printer->curBoard(this->board);
 
@@ -56,9 +61,8 @@ void Game::playOneTurn() {
 
   this->printer->itsYourMove(this->currentColor);
 
-  if (posMoves->getSize()) {
+  if (posMoves.size()) {
     this->printer->posMoves(posMoves);
-    //this->printer->plsEnterMove();
     this->noPosMoves = 0;
   } else {
     this->printer->noPosMoves();
@@ -101,17 +105,8 @@ int Game::getScore(char color) const {
 
   for (Iterator iterator = this->board->getCellsList()->begin();
        iterator != this->board->getCellsList()->end(); iterator++)
-    if (iterator->second->isFilledWith(color))
+    if (iterator->second.isFilledWith(color))
       score++;
 
   return score;
-}
-
-Game::~Game() {
-  delete this->board;
-  delete this->printer;
-  delete this->blackPlayer;
-  delete this->whitePlayer;
-  delete this->logic;
-  delete this->menu;
 }

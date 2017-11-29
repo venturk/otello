@@ -1,48 +1,53 @@
 /*
- * MiniMaxLogic.cpp
- *
- *  Created on: Nov 25, 2017
- *      Author: avihay
+ * Kfir Ventura
+ * Avihay Arzuan
  */
 
 #include "MiniMaxAlgo.h"
+#include "iostream"
+#define HIGHNUM 1000
+#define LOWNUM -1000
+#define STARTNUM 0
 
-void MiniMaxAlgo::useMiniMaxMove(GameLogic *logic, CellMap *posMoves,
+void MiniMaxAlgo::useMiniMaxMove(GameLogic *logic, map<string, Cell> posMoves,
                                  char color, char opponentColor,
                                  Board * board) {
-    int chosenRow = 0, chosenCol = 0, maxScoreRow = 0, maxScoreCol = 0;
-    int minOppScore = 1000, score = -1000;
+    int chosenRow = STARTNUM, chosenCol = STARTNUM, maxScoreRow = STARTNUM,
+            maxScoreCol = STARTNUM;
+    int minOppScore = HIGHNUM, score = LOWNUM;
     //iterates each possible move of the player
-    for (Iterator it = posMoves->begin(); it != posMoves->end(); it++) {
+    for (Iterator it = posMoves.begin(); it != posMoves.end(); it++) {
         Board *tempBoard = new Board(*board);
         DefaultLogic * t = static_cast<DefaultLogic *>(logic);
         DefaultLogic *tempLogic = new DefaultLogic(*t);
-        CellMap * tempPosMoves;
         int row, col;
-        row = it->second->getRow();
-        col = it->second->getCol();
+        row = it->second.getRow();
+        col = it->second.getCol();
         //make the possible move
-        if (posMoves->isInMap(row, col)) {
+        if (posMoves.count(String::intToPoint(row, col))) {
             tempLogic->executeOrder66(row, col);
-            tempPosMoves = tempLogic->getPossibleMoves(opponentColor);
+            map<string, Cell> m = tempLogic->getPossibleMoves(opponentColor);
+            map<string, Cell> tempPosMoves(m);
             // iterates the opponent moves after making one of the possible moves
-            for (Iterator innerIt = tempPosMoves->begin();
-                    innerIt != tempPosMoves->end(); innerIt++) {
+            for (Iterator innerIt = tempPosMoves.begin();
+                    innerIt != tempPosMoves.end(); innerIt++) {
                 Board* tempInnerBoard = new Board(*tempBoard);
                 DefaultLogic *d = static_cast<DefaultLogic *>(tempLogic);
                 DefaultLogic *tempInnerLogic = new DefaultLogic(*d);
-                int innerRow = innerIt->second->getRow();
-                int innerCol = innerIt->second->getCol();
+                int innerRow = innerIt->second.getRow();
+                int innerCol = innerIt->second.getCol();
                 //make one of the opponent move
-                if (tempPosMoves->isInMap(innerRow, innerCol)) {
+                if (tempPosMoves.count(
+                        String::intToPoint(innerRow, innerCol))) {
                     tempInnerLogic->executeOrder66(innerRow, innerCol);
-                    CellMap cells = *tempInnerBoard->getCellsList();
-                    int myColor = 0, oppColor = 0;
+                    map<string, Cell> m2 = *tempInnerBoard->getCellsList();
+                    map<string, Cell> cells(m2);
+                    int myColor = STARTNUM, oppColor = STARTNUM;
                     //counts the difference
                     for (Iterator i = cells.begin(); i != cells.end(); i++) {
-                        if (i->second->getColor() == color) {
+                        if (i->second.getColor() == color) {
                             myColor++;
-                        } else if (i->second->getColor() == opponentColor) {
+                        } else if (i->second.getColor() == opponentColor) {
                             oppColor++;
                         }
                     }
@@ -53,18 +58,18 @@ void MiniMaxAlgo::useMiniMaxMove(GameLogic *logic, CellMap *posMoves,
                         maxScoreCol = col;
                     }
                 }
+                delete tempInnerBoard;
+                delete tempInnerLogic;
             }
-//            delete tempInnerBoard;
-//            delete tempInnerLogic;
             // save the min score of the opponent can get from all player possible moves
-        }
-            if (minOppScore > score) {
+            if ((minOppScore > score) && (score != -1000)) {
                 minOppScore = score;
                 chosenRow = maxScoreRow;
                 chosenCol = maxScoreCol;
             }
-            delete tempBoard;
-            delete tempLogic;
+        }
+        delete tempBoard;
+        delete tempLogic;
     }
     //the minimax strategy decision
     logic->executeOrder66(chosenRow, chosenCol);

@@ -1,7 +1,7 @@
 /*
-* Kfir Ventura the great loser
-* 301754370
-*/
+ * Kfir Ventura
+ * Avihay Arzuan
+ */
 #ifndef EX2_BOARD_H
 #define EX2_BOARD_H
 
@@ -10,12 +10,12 @@
 #define LINE_SEPARATOR_SIZE ((this->size * 4) + 3)
 #define MID_CELL_1 (this->size / 2)
 #define MID_CELL_2 ((this->size / 2) + 1)
-#define BOARD_SIZE 8
+#define BOARD_SIZE 4
 
 #include <iostream>
 #include "Cell.h"
 #include <map>
-#include "CellMap.h"
+//#include "CellMap.h"
 
 using namespace std;
 
@@ -24,7 +24,7 @@ class Board{
   /**
    * @return a pointer to the map of cells.
    */
-  CellMap *getCellsList() const;
+   map <string, Cell>* getCellsList() const;
 
   /**
    * @return size of the board.
@@ -36,6 +36,7 @@ class Board{
  * @param size the board's size.
  */
   Board(int size = BOARD_SIZE);
+
   //copy c'tor
   Board (const Board &obj);
 
@@ -54,7 +55,7 @@ class Board{
    * Members of the class.
    */
   int size;
-  CellMap *board;
+  map <string, Cell>* board;
 
   /**
  * The method prints a line from the board.

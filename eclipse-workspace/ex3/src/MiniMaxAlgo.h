@@ -1,8 +1,6 @@
 /*
- * MiniMaxLogic.h
- *
- *  Created on: Nov 25, 2017
- *      Author: avihay
+ * Kfir Ventura
+ * Avihay Arzuan
  */
 #include "DefaultLogic.h"
 #include "Cell.h"
@@ -14,7 +12,7 @@
  */
 class MiniMaxAlgo {
  public:
-    static void useMiniMaxMove(GameLogic *logic, CellMap *posMoves, char color,char opponentColor, Board * board);
+    static void useMiniMaxMove(GameLogic *logic, map<string,Cell> posMoves, char color,char opponentColor, Board * board);
 };
 
 #endif /* MINIMAXLOGIC_H_ */

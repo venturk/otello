@@ -1,6 +1,6 @@
 /*
  * Kfir Ventura
- * 301754370
+ * Avihay Arzuan
  */
 #include "HumanPlayer.h"
 
@@ -12,7 +12,7 @@ char HumanPlayer::getColor() const {
     return this->color;
 }
 
-void HumanPlayer::makeMove(GameLogic *logic, CellMap *posMoves,
+void HumanPlayer::makeMove(GameLogic *logic, map<string, Cell> &posMoves,
                            ConsoleMsgs *printer) {
     int row, col;
 
@@ -20,15 +20,15 @@ void HumanPlayer::makeMove(GameLogic *logic, CellMap *posMoves,
         cout << "please enter row: " << endl;
         cin >> row;
         int x = isdigit(row);
-        if (x==0) {
+        if (x == 0) {
             cin.clear();
             cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
             cout << "please enter column: " << endl;
             cin >> col;
-            if (isdigit(col)==0) {
+            if (isdigit(col) == 0) {
                 cin.clear();
                 cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
-                if (posMoves->isInMap(row, col))
+                if (posMoves.count(String::intToPoint(row, col)))
                     break;
             }
         }

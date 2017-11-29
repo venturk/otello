@@ -1,39 +1,39 @@
 /*
  * Kfir Ventura
- * 301754370
+ * Avihay Arzuan
  */
 #include "Board.h"
 
 Board::Board(int size)
-        : size(size),
-          board(new CellMap()) {
+        : size(size) {
+    this->board = new map<string, Cell>;
     initBoard();
 }
 Board::Board(const Board &obj) {
     this->size = obj.getSize();
-    CellMap *cm = obj.getCellsList();
-    this->board= new CellMap(*cm);
+    this->board = new map<string, Cell>;
+    map<string, Cell> cm = *obj.getCellsList();
+    *this->board = cm;
 }
 Board::~Board() {
     delete this->board;
 }
 
-CellMap *Board::getCellsList() const {
+map<string, Cell>* Board::getCellsList() const {
     return this->board;
 }
-
 
 void Board::initBoard() {
     for (int row = 1; row <= this->size; row++) {
         for (int col = 1; col <= this->size; col++) {
-            board->insert(row, col);
+            Cell c(row, col);
+            board->insert(pair<string, Cell>(String::intToPoint(row, col), c));
         }
     }
-
-    board->setCellColor(MID_CELL_1, MID_CELL_1, WHITE);
-    board->setCellColor(MID_CELL_2, MID_CELL_2, WHITE);
-    board->setCellColor(MID_CELL_1, MID_CELL_2, BLACK);
-    board->setCellColor(MID_CELL_2, MID_CELL_1, BLACK);
+    board->at(String::intToPoint(MID_CELL_1, MID_CELL_1)).setColor(WHITE);
+    board->at(String::intToPoint(MID_CELL_2, MID_CELL_2)).setColor(WHITE);
+    board->at(String::intToPoint(MID_CELL_1, MID_CELL_2)).setColor(BLACK);
+    board->at(String::intToPoint(MID_CELL_2, MID_CELL_1)).setColor(BLACK);
 }
 
 void Board::printBoard() const {
@@ -57,7 +57,8 @@ void Board::printFirstLine() const {
 void Board::printLine(int &lineNumber) const {
     cout << lineNumber << CELL_SEPARATOR;
     for (int i = 1; i <= this->size; i++)
-        cout << this->board->getCellColor(lineNumber, i) << CELL_SEPARATOR;
+        cout << this->board->at(String::intToPoint(lineNumber, i)).getColor()
+             << CELL_SEPARATOR;
     printLineSeparator();
 }
 

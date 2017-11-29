@@ -1,11 +1,12 @@
 /*
  * Kfir Ventura
- * 301754370
+ * Avihay Arzuan
  */
 #ifndef EX2_DEFAULTLOGIC_H
 #define EX2_DEFAULTLOGIC_H
 
 #include "GameLogic.h"
+typedef map<string, Cell >::iterator Iterator;
 
 class DefaultLogic : public GameLogic {
  public:
@@ -15,21 +16,21 @@ class DefaultLogic : public GameLogic {
      * @param currentColor - EMPTY.
      */
     DefaultLogic(Board *board, char currentColor = EMPTY);
-
+    /**
+     * copy constructor
+     * @param obj
+     */
     DefaultLogic(DefaultLogic &obj);
 
-    Board* getLogicBoard() const;
-    char getCurrentColor() const;
-    Cell *getCurrentCell() const;
-    CellMap *getCellMap() const;
-    CellMap *clonePossibleMoves() const;
+    void copyLogic(DefaultLogic * l1, DefaultLogic &l2);
+
 
     /**
      * The method calculates all possible moves for player
      * @param currentColor - the current player's color.
      * @return all possible moves of current player.
      */
-    virtual CellMap *getPossibleMoves(char currentColor);
+    virtual map<string, Cell> getPossibleMoves(char currentColor);
 
     /**
      * Destructor.
@@ -48,11 +49,20 @@ class DefaultLogic : public GameLogic {
     /**
      * Members.
      */
-    Cell *currentCell;
+    Cell currentCell;
     char currentColor;
-    CellMap *cellMap;
-    CellMap *possibleMoves;
+    map<string, Cell> *cellMap;
+    map<string, Cell> possibleMoves;
     Board* board;
+    int boardSize;
+    /**
+     * the following methods uses to deep copy:
+     */
+    Board* getLogicBoard() const;
+    char getCurrentColor() const;
+    Cell getCurrentCell() const;
+    map<string, Cell>* getCellMap() const;
+    map<string, Cell> clonePossibleMoves() const;
 
     /**
      * Sub method that checks if the cell is out of boundaries.

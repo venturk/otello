@@ -1,8 +1,6 @@
 /*
- * MainMenu.h
- *
- *  Created on: Nov 24, 2017
- *      Author: avihay
+ * Kfir Ventura
+ * Avihay Arzuan
  */
 
 #ifndef MAINMENU_H_
@@ -16,15 +14,30 @@ typedef enum userChoice {
 } userChoice;
 
 /*
- *
+ * The class runs the main menu
  */
 class MainMenu {
  public:
+    //C'tor
     MainMenu();
+    //D'tor
     virtual ~MainMenu();
+    /**
+     * asks for user choice
+     * @return int the user choice
+     */
     userChoice run();
  private:
+    /**
+     * check validation of the user
+     * @param choice the user input
+     * @return true if valid false otherwise
+     */
     bool checkUserChoice(int &choice);
+    /**
+     * prints to screen the user choice
+     * @param choice
+     */
     void printUserChoice(int &choice);
 };
 
