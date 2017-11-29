@@ -23,7 +23,7 @@ class Player {
      * @param printer - the console printer.
      */
     virtual void makeMove(GameLogic *logic, map<string, Cell> &posMoves,
-                          ConsoleMsgs *printer)= 0;
+                          ConsoleMsgs printer)= 0;
 
     // D'tor.
     virtual ~Player() {

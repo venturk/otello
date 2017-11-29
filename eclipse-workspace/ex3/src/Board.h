@@ -55,6 +55,7 @@ class Board{
    * Members of the class.
    */
   int size;
+  map <string, Cell> mapCell;
   map <string, Cell>* board;
 
   /**

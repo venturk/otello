@@ -5,30 +5,26 @@
 #include "Game.h"
 
 Game::Game() : noPosMoves(0), shouldRun(true) {
-  this->board = new Board();
+  this->board = &b;
   this->whitePlayer = NULL;
   this->blackPlayer = new HumanPlayer(BLACK);
   this->logic = new DefaultLogic(this->board);
-  this->printer = new ConsoleMsgs();
-  MainMenu menu;
-  this->menu = menu;
   this->numOfEmptyCells = (this->board->getSize() * this->board->getSize()) - 4;
   this->currentPlayer = this->blackPlayer;
   this->currentColor = this->currentPlayer->getColor();
 }
 
 Game::~Game() {
-//  delete this->board;
   delete this->logic;
-  delete this->printer;
   delete this->blackPlayer;
   delete this->whitePlayer;
 }
 void Game::run() {
-  if(this->menu.run() == humanPlayer)
+  if(this->menu.run() == humanPlayer) {
 	  this->whitePlayer = new HumanPlayer(WHITE);
-  else
+  } else {
 	  this->whitePlayer = new AIPlayer(WHITE, this->board);
+  }
 
   while (this->shouldRun) {
     playOneTurn();
@@ -42,30 +38,30 @@ void Game::printWinner() const {
   int whiteScore = this->getScore(whitePlayer->getColor());
 
   if (blackScore > whiteScore)
-    this->printer->printWinner(BLACK);
+    this->printer.printWinner(BLACK);
   else if (blackScore < whiteScore)
-    this->printer->printWinner(WHITE);
+    this->printer.printWinner(WHITE);
   else
-    this->printer->printWinner(EMPTY);
+    this->printer.printWinner(EMPTY);
 }
 
 void Game::playOneTurn() {
   map<string, Cell> posMoves = logic->getPossibleMoves(this->currentColor);
 
-  this->printer->curBoard(this->board);
+  this->printer.curBoard(this->board);
 
   if (!this->numOfEmptyCells) {
     this->shouldRun = false;
     return;
   }
 
-  this->printer->itsYourMove(this->currentColor);
+  this->printer.itsYourMove(this->currentColor);
 
   if (posMoves.size()) {
-    this->printer->posMoves(posMoves);
+    this->printer.posMoves(posMoves);
     this->noPosMoves = 0;
   } else {
-    this->printer->noPosMoves();
+    this->printer.noPosMoves();
     this->noPosMoves++;
 
     if (this->noPosMoves == 2)

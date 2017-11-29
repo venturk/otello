@@ -6,17 +6,17 @@
 
 Board::Board(int size)
         : size(size) {
-    this->board = new map<string, Cell>;
+    this->board = &this->mapCell;
     initBoard();
 }
 Board::Board(const Board &obj) {
     this->size = obj.getSize();
-    this->board = new map<string, Cell>;
-    map<string, Cell> cm = *obj.getCellsList();
-    *this->board = cm;
+    this->mapCell = *obj.getCellsList();
+    this->board = &this->mapCell;
 }
 Board::~Board() {
-    delete this->board;
+    this->mapCell.clear();
+    this->board = NULL;
 }
 
 map<string, Cell>* Board::getCellsList() const {

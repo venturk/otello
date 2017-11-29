@@ -13,7 +13,7 @@ char HumanPlayer::getColor() const {
 }
 
 void HumanPlayer::makeMove(GameLogic *logic, map<string, Cell> &posMoves,
-                           ConsoleMsgs *printer) {
+                           ConsoleMsgs printer) {
     int row, col;
 
     do {
@@ -33,7 +33,7 @@ void HumanPlayer::makeMove(GameLogic *logic, map<string, Cell> &posMoves,
             }
         }
 
-        printer->illegalMove();
+        printer.illegalMove();
         //printer->plsEnterMove();
     } while (true);
 

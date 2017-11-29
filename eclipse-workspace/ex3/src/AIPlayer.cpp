@@ -15,7 +15,7 @@ char AIPlayer::getColor() const {
 }
 
 void AIPlayer::makeMove(GameLogic *logic, map<string, Cell> &posMoves,
-                        ConsoleMsgs *printer) {
+                        ConsoleMsgs printer) {
     char oppColor;
     if (this->color == BLACK) {
         oppColor = WHITE;

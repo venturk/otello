@@ -59,7 +59,9 @@ void MiniMaxAlgo::useMiniMaxMove(GameLogic *logic, map<string, Cell> posMoves,
                     }
                 }
                 delete tempInnerBoard;
+                tempInnerBoard = 0;
                 delete tempInnerLogic;
+                tempInnerLogic = 0;
             }
             // save the min score of the opponent can get from all player possible moves
             if ((minOppScore > score) && (score != -1000)) {
@@ -69,7 +71,9 @@ void MiniMaxAlgo::useMiniMaxMove(GameLogic *logic, map<string, Cell> posMoves,
             }
         }
         delete tempBoard;
+        tempBoard = 0;
         delete tempLogic;
+        tempLogic = 0;
     }
     //the minimax strategy decision
     logic->executeOrder66(chosenRow, chosenCol);

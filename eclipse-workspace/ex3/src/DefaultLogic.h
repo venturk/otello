@@ -51,8 +51,10 @@ class DefaultLogic : public GameLogic {
      */
     Cell currentCell;
     char currentColor;
+    map<string, Cell> cellMapValues;
     map<string, Cell> *cellMap;
     map<string, Cell> possibleMoves;
+    Board b;
     Board* board;
     int boardSize;
     /**

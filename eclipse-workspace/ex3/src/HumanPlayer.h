@@ -30,7 +30,7 @@ class HumanPlayer : public Player {
    * @param posMoves - the possible moves to choose from.
    * @param printer - the console printer.
    */
-  void makeMove(GameLogic *logic, map<string,Cell> &posMoves, ConsoleMsgs *printer);
+  void makeMove(GameLogic *logic, map<string,Cell> &posMoves, ConsoleMsgs printer);
  private:
   /**
    * Members.

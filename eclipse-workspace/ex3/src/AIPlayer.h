@@ -10,7 +10,7 @@
 #define AIPLAYER_H_
 
 /*
- * inherite from player
+ * Inherit from player
  */
 class AIPlayer : public Player {
  public:
@@ -34,7 +34,7 @@ class AIPlayer : public Player {
      * @param posMoves
      * @param printer
      */
-    void makeMove(GameLogic *logic, map<string, Cell> &posMoves, ConsoleMsgs *printer);
+    void makeMove(GameLogic *logic, map<string, Cell> &posMoves, ConsoleMsgs printer);
 
  private:
     const char color;

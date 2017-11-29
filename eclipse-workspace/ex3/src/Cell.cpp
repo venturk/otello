@@ -45,24 +45,3 @@ int Cell::getCol() const {
 int Cell::getRow() const {
     return this->point.getRow();
 }
-//
-///**
-// * SHOULD BE REMOVED...?
-// */
-//bool Cell::isWhite() const {
-//    return (this->color == WHITE);
-//}
-//
-///**
-// * SHOULD BE REMOVED...?
-// */
-//bool Cell::isBlack() const {
-//    return (this->color == BLACK);
-//}
-//
-///**
-// * SHOULD BE REMOVED...?
-// */
-//Point Cell::getPoint() const {
-//    return this->point;
-//}

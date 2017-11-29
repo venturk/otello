@@ -5,8 +5,8 @@
 #include "DefaultLogic.h"
 
 DefaultLogic::DefaultLogic(Board *board, char currentColor) {
-    Board * b = board;
-    this->board = new Board(*b);
+    this->b = *board;
+    this->board = board;
     this->boardSize = this->board->getSize();
     this->currentColor = currentColor;
     this->cellMap = board->getCellsList();
@@ -22,21 +22,17 @@ DefaultLogic::DefaultLogic(DefaultLogic &obj) {
     this->boardSize = this->board->getSize();
 }
 void DefaultLogic::copyLogic(DefaultLogic *l1, DefaultLogic &l2) {
-    Board *b = l2.getLogicBoard();
     Cell c = l2.currentCell;
-    map<string, Cell> *cm = l2.getCellMap();
-    l1->board = new Board(*b);
+    this->cellMapValues = *l2.getCellMap();
+    l1->b = *l2.getLogicBoard();
+    l1->board = l2.getLogicBoard();
     l1->currentColor = l2.getCurrentColor();
-    l1->cellMap = new map<string, Cell>(*cm);
+    l1->cellMap = &this->cellMapValues;
     l1->possibleMoves = l2.clonePossibleMoves();
     l1->currentCell = c;
 }
 
 DefaultLogic::~DefaultLogic() {
-    if (this->cellMap) {
-        delete this->cellMap;
-    }
-    delete this->board;
 }
 
 Board * DefaultLogic::getLogicBoard() const {

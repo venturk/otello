@@ -26,10 +26,11 @@ class Game {
     //d'tor
     ~Game();
  private:
+    Board b;
     Board *board;
     Player *whitePlayer, *blackPlayer, *currentPlayer;
     GameLogic *logic;
-    ConsoleMsgs *printer;
+    ConsoleMsgs printer;
     MainMenu menu;
     char currentColor;
     int noPosMoves, numOfEmptyCells;
